@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Monte a Frase – Inglês</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+<section id="home">
+  <h1>Monte a frase</h1>
+  <p class="lead">Treine <b>to be</b> e <b>do/does/did</b> montando frases em inglês, peça por peça. São 4 rodadas com 4 frases cada, e você pode errar à vontade.</p>
+
+  <h2>Como jogar</h2>
+  <ul class="steps">
+    <li><b>1. Uma rodada, uma frase</b>Cada rodada traz uma frase-base em português e pede as 4 formas dela: afirmativa, negativa, interrogativa e interrogativa negativa.</li>
+    <li><b>2. Toque nas palavras</b>Escolha uma linha e toque nas peças amarelas, na ordem certa. Toque numa peça já colocada para tirá-la.</li>
+    <li><b>3. Verifique a rodada</b>Um só botão confere as 4 frases: as certas ficam verdes e você corrige as outras. O . ou ? final entra sozinho e há peças a mais para confundir.</li>
+    <li><b>4. Ganhe pontos</b>Cada frase certa de primeira vale 10 pontos. Cada erro tira 3 e usar a dica tira 2. Você sempre ganha ao menos 2 se acertar.</li>
+  </ul>
+
+  <h2>O que você vai montar</h2>
+  <p>São 4 frases-base, cada uma em 4 formas: <b>afirmativa, negativa, interrogativa e interrogativa negativa</b>.</p>
+  <div class="card scroll">
+    <table>
+      <tr><th>Fase</th><th>Frase-base</th><th>Tempo</th></tr>
+      <tr><td>1</td><td><span class="ex">She is a teacher.</span></td><td>to be, presente</td></tr>
+      <tr><td>2</td><td><span class="ex">They were at home.</span></td><td>to be, passado</td></tr>
+      <tr><td>3</td><td><span class="ex">He plays football.</span></td><td>do/does, presente</td></tr>
+      <tr><td>4</td><td><span class="ex">We watched a movie.</span></td><td>did, passado</td></tr>
+    </table>
+  </div>
+
+  <h2>Cola rápida</h2>
+  <div class="card scroll">
+    <table>
+      <tr><th>Forma</th><th>To be</th><th>Do / does / did</th></tr>
+      <tr><td>Afirmativa</td><td>sujeito + <code>is/are/was/were</code> + complemento</td><td>sujeito + verbo (<code>plays</code>, <code>watched</code>)</td></tr>
+      <tr><td>Negativa</td><td>sujeito + be + <code>not</code> (<code>isn’t</code>, <code>weren’t</code>)</td><td>sujeito + <code>does/did not</code> + verbo base (<code>play</code>)</td></tr>
+      <tr><td>Interrogativa</td><td><code>Is/Were</code> + sujeito + complemento?</td><td><code>Does/Did</code> + sujeito + verbo base?</td></tr>
+      <tr><td>Interrog. negativa</td><td><code>Isn’t/Weren’t</code> + sujeito…? ou <code>Is</code> + sujeito + <code>not</code>…?</td><td><code>Doesn’t/Didn’t</code> + sujeito + verbo base?</td></tr>
+    </table>
+  </div>
+  <p style="margin-top:10px;color:var(--muted)">Lembrete: com <i>do/does/did</i> o verbo principal volta à forma base (sem -s, sem -ed). <i>Does</i> é para he/she/it; <i>do</i> é para I/you/we/they.</p>
+
+  <button class="btn-pri big" id="start">Começar o jogo</button>
+  <p id="best" style="margin-top:12px;color:var(--muted)"></p>
+</section>
+
+<section id="game" class="hide">
+  <div class="top"><span class="pill" id="phase"></span><span class="pill" id="pts">0 pontos</span></div>
+  <div class="bar"><i id="barfill"></i></div>
+  <div class="dots" id="dots" aria-hidden="true"></div>
+  <div class="card">
+    <div class="tags"><span class="tag" id="tag1"></span></div>
+    <div class="pt" id="pt"></div>
+    <p class="how">Monte essa frase em inglês nas 4 formas. Toque numa linha e depois nas palavras amarelas.</p>
+    <div id="rows"></div>
+    <div class="bank" id="bank"></div>
+    <div class="acts">
+      <button class="btn-pri" id="check">Verificar rodada</button>
+      <button id="clear">Limpar linha</button>
+      <button id="hint">Dica (−2)</button>
+      <button id="reveal" class="hide">Ver respostas</button>
+      <button id="next" class="btn-pri hide">Próxima</button>
+    </div>
+    <div id="msg"></div>
+  </div>
+</section>
+
+<section id="end" class="hide">
+  <h1>Fim de jogo!</h1>
+  <div class="card">
+    <div class="score" id="final"></div>
+    <p id="verdict" style="font-size:1.15rem;font-weight:700;margin-top:8px"></p>
+    <div class="grid4" id="byform"></div>
+    <p>Bolinhas verdes são acertos; vermelhas são frases que você deixou para revisar.</p>
+    <div class="dots" id="enddots"></div>
+    <button class="btn-pri big" id="again">Jogar de novo</button>
+  </div>
+</section>
+
+</div>
+<script src="script.js"></script>
+</body>
+</html>

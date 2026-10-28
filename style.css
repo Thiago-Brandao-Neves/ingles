@@ -1,0 +1,515 @@
+/* ==========================================================================
+   Monte a frase — estilos
+   Sumário:
+   1. Variáveis (tema claro e escuro)
+   2. Base
+   3. Tipografia
+   4. Componentes gerais (card, botões, tabelas)
+   5. Tela inicial
+   6. Tela do jogo
+   7. Tela final
+   8. Animações e acessibilidade
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. Variáveis
+   ========================================================================== */
+
+:root {
+  --bg: #eef2ff;
+  --card: #ffffff;
+  --ink: #16203d;
+  --muted: #5b6585;
+  --line: #d5dbf3;
+
+  --pri: #3d5afe;
+  --pri-ink: #ffffff;
+
+  --tile: #ffd54a;
+  --tile-edge: #d9a914;
+  --tile-ink: #2a2200;
+
+  --good: #14935a;
+  --good-bg: #dcf7ea;
+  --bad: #d6313a;
+  --bad-bg: #fde4e5;
+}
+
+/* Tema escuro automático (segue o sistema) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #10162b;
+    --card: #1a2240;
+    --ink: #eef1ff;
+    --muted: #a3acd0;
+    --line: #2c3763;
+
+    --pri: #7d92ff;
+    --pri-ink: #0d1330;
+
+    --good: #4fd69a;
+    --good-bg: #123a2a;
+    --bad: #ff7b82;
+    --bad-bg: #44191c;
+  }
+}
+
+/* Tema escuro forçado */
+:root[data-theme="dark"] {
+  --bg: #10162b;
+  --card: #1a2240;
+  --ink: #eef1ff;
+  --muted: #a3acd0;
+  --line: #2c3763;
+
+  --pri: #7d92ff;
+  --pri-ink: #0d1330;
+
+  --good: #4fd69a;
+  --good-bg: #123a2a;
+  --bad: #ff7b82;
+  --bad-bg: #44191c;
+}
+
+
+/* ==========================================================================
+   2. Base
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+  scroll-padding-top: env(safe-area-inset-top, 0px);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: "Avenir Next", "Nunito", "Segoe UI", system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+.wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 20px 16px 48px;
+}
+
+.hide {
+  display: none !important;
+}
+
+.scroll {
+  overflow-x: auto;
+}
+
+
+/* ==========================================================================
+   3. Tipografia
+   ========================================================================== */
+
+h1 {
+  margin: 8px 0 10px;
+  font-size: clamp(2rem, 7vw, 3.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  margin: 28px 0 10px;
+  font-size: 1.25rem;
+}
+
+p {
+  margin: 0 0 10px;
+}
+
+.lead {
+  max-width: 52ch;
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+code,
+.ex {
+  padding: 1px 6px;
+  border-radius: 6px;
+  background: var(--bg);
+  font-weight: 700;
+}
+
+
+/* ==========================================================================
+   4. Componentes gerais
+   ========================================================================== */
+
+/* Card */
+.card {
+  padding: 16px;
+  border: 2px solid var(--line);
+  border-radius: 18px;
+  background: var(--card);
+}
+
+/* Botões */
+button {
+  padding: 12px 18px;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--ink);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+button:focus-visible {
+  outline: 3px solid var(--pri);
+  outline-offset: 2px;
+}
+
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn-pri {
+  border-color: var(--pri);
+  background: var(--pri);
+  color: var(--pri-ink);
+  box-shadow: 0 4px 0 rgba(0, 0, 0, 0.25);
+}
+
+.btn-pri:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.25);
+}
+
+.big {
+  margin-top: 18px;
+  padding: 15px 28px;
+  font-size: 1.15rem;
+}
+
+/* Tabelas */
+table {
+  width: 100%;
+  min-width: 520px;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+th,
+td {
+  padding: 9px 10px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  color: var(--muted);
+  font-weight: 700;
+}
+
+
+/* ==========================================================================
+   5. Tela inicial
+   ========================================================================== */
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.steps li {
+  padding: 14px;
+  border: 2px solid var(--line);
+  border-radius: 14px;
+  background: var(--card);
+}
+
+.steps b {
+  display: block;
+  margin-bottom: 2px;
+}
+
+
+/* ==========================================================================
+   6. Tela do jogo
+   ========================================================================== */
+
+/* Topo: fase e pontos */
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.pill {
+  padding: 4px 12px;
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  background: var(--card);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+/* Barra de progresso */
+.bar {
+  height: 12px;
+  margin-bottom: 6px;
+  overflow: hidden;
+  border-radius: 99px;
+  background: var(--line);
+}
+
+.bar i {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: 99px;
+  background: var(--pri);
+  transition: width 0.35s;
+}
+
+/* Bolinhas de progresso */
+.dots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  margin-bottom: 16px;
+}
+
+.dots span {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--line);
+}
+
+.dots .ok {
+  background: var(--good);
+}
+
+.dots .miss {
+  background: var(--bad);
+}
+
+.dots .now {
+  outline: 3px solid var(--pri);
+  outline-offset: 1px;
+}
+
+/* Etiquetas */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.tag {
+  padding: 5px 11px;
+  border-radius: 10px;
+  background: var(--pri);
+  color: var(--pri-ink);
+  font-weight: 800;
+}
+
+.tag.f {
+  background: var(--tile);
+  color: var(--tile-ink);
+}
+
+/* Frase em português e instrução */
+.pt {
+  margin: 4px 0 14px;
+  font-size: 1.55rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.how {
+  margin: 0 0 12px;
+  color: var(--muted);
+}
+
+/* Linhas de resposta (uma por variação) */
+.row {
+  margin-bottom: 10px;
+  padding: 10px 12px;
+  border: 3px solid var(--line);
+  border-radius: 16px;
+  background: var(--card);
+  cursor: pointer;
+}
+
+.row.act {
+  border-color: var(--pri);
+}
+
+.row.good {
+  border-color: var(--good);
+  background: var(--good-bg);
+}
+
+.row.rev {
+  border-color: var(--muted);
+  background: var(--bg);
+}
+
+.row.bad {
+  border-color: var(--bad);
+  background: var(--bad-bg);
+  animation: shake 0.35s;
+}
+
+.rh {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+/* Área onde as peças montadas aparecem */
+.answer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.ph {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.mark {
+  font-size: 1.6rem;
+  font-weight: 900;
+}
+
+/* Banco de peças */
+.bank {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  min-height: 56px;
+  margin-bottom: 16px;
+  padding-top: 4px;
+}
+
+/* Peças (palavras) */
+.tile {
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 11px;
+  background: var(--tile);
+  color: var(--tile-ink);
+  box-shadow: 0 4px 0 var(--tile-edge);
+  font-size: 1.15rem;
+  font-weight: 800;
+}
+
+.tile:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0 var(--tile-edge);
+}
+
+.tile.used {
+  visibility: hidden;
+}
+
+/* Botões de ação e mensagens */
+.acts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.msg {
+  margin-top: 14px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-weight: 700;
+}
+
+.msg.good {
+  background: var(--good-bg);
+  color: var(--good);
+}
+
+.msg.bad {
+  background: var(--bad-bg);
+  color: var(--bad);
+}
+
+.msg.info {
+  border: 2px solid var(--line);
+  background: var(--bg);
+  color: var(--ink);
+}
+
+
+/* ==========================================================================
+   7. Tela final
+   ========================================================================== */
+
+.score {
+  font-size: 4rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.grid4 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.grid4 div {
+  padding: 10px;
+  border: 2px solid var(--line);
+  border-radius: 12px;
+  background: var(--card);
+}
+
+
+/* ==========================================================================
+   8. Animações e acessibilidade
+   ========================================================================== */
+
+@keyframes shake {
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
