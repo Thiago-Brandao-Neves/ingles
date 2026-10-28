@@ -39,10 +39,10 @@ const ROUNDS = [
     kind: "be",
     extra: ["are", "am", "do"],
     forms: {
-      aff:    { answers: ["she is a student"], pt: "Ela é ESTUDANTE." },
-      neg:    { answers: ["she is not a student", "she isn't a student"], pt: "Ela não é ESTUDANTE." },
-      int:    { answers: ["is she a student"], pt: "Ela é ESTUDANTE?" },
-      negint: { answers: ["isn't she a student", "is she not a student"], pt: "Ela não é ESTUDANTE?" },
+      aff:    { answers: ["she is a teacher"], pt: "Ela é professora." },
+      neg:    { answers: ["she is not a teacher", "she isn't a teacher"], pt: "Ela não é professora." },
+      int:    { answers: ["is she a teacher"], pt: "Ela é professora?" },
+      negint: { answers: ["isn't she a teacher", "is she not a teacher"], pt: "Ela não é professora?" },
     },
   },
   {
